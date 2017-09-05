@@ -1,4 +1,7 @@
 # pythonpals
+## Joyce, Surya, Marlo, Dimitrios
+
+### Initial Brainstorming:
 
 #### 1
 Webscrape and data viz something cool
