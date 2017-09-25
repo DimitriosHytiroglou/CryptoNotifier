@@ -1,4 +1,4 @@
 # pythonpals
-## Joyce, Surya, Marlo, Dimitrios
+## Joyce, Surya, Dimitrios
 
 ### This is the repository for Python Pals. :^)

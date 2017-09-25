@@ -9,7 +9,7 @@
 Managing financial assets requires rational decision making, but this can be difficult when markets are volatile. **To Hodl Or Not To Hodl** provides real-time, relevant information to cryptocurrency holders to keep users informed of price movements in a timely manner.
 
 ## Use Cases
-** To Hodl Or Not To Hodl ** will send price-movement notifications to users via text message. There are two primary use cases:
+**To Hodl Or Not To Hodl** will send price-movement notifications to users via text message. There are two primary use cases:
 1. Users can input the following information, via Terminal:
 
     * a currency to watch 
