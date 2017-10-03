@@ -49,7 +49,7 @@ At set intervals the program will:
 The whole architecture can be found in the "To Hodl or Not to Hodl.svg" file.
 To view the .svg file properly open the image in a new tab.
 
-The major features of the program are:
+The main features of the program are:
 1. The main python module
 2. A shelves database that stores each users data and notification requirements
 3. The CryptoCompare API and the Twillio API
