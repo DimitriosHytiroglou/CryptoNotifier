@@ -24,4 +24,44 @@ The output will be a notification via text message when the specified currency f
     * the amount of divergence at which they expect to be notified 
     * phone number to notify. 
 
-The output will be a notification via text message when the specified currencies diverge the specified amount. Note that the amount of divergence will affect the frequency that the system sends the user notifications. The system may suggest amounts as well, for a better user experience. 
+The output will be a notification via text message when the specified currencies diverge the specified amount. Note that the amount of divergence will affect the frequency that the system sends the user notifications. The system may suggest amounts as well, for a better user experience.
+
+
+## Implementation Plan
+#### Features:
+1. Command line interface to input currencies, benchmark or diversion amount, and cell phone number
+2. CryptoCompare API to make calls for relevant data (hosted on AWS)
+3. Twilio API to send text message notifications based on user specifications
+
+#### Required Algos/Data Structures for each feature:
+1. The command line interface will interact with our python scripts and take in data as as string, which will then be converted to an int or float as needed like with the case of cell phone numbers
+2. The CryptoCompare API returns data in the form of a JSON dump which then needs to be parsed further. A JSON file is composed for nested dictionaries, with various data types within it. In this specific case, the JSON output contains data in the form of strings for the currency codes and integers for the exchange rate or currency value
+3. The Twilio API takes data in the form of strings for the message content and integers for the cell phone numbers. We will be using both of these datatypes for our implementation. 
+
+#### Existing work:
+* Each feature will be written by us as there has been no previous implementation like this in the past. For the CryptoCompare and Twilio APIs we will be relying on the provided documentation and examples as a starting point:
+	* Twilio API docs: https://www.twilio.com/docs/api/messaging
+	* CrpytoCompare API docs: https://www.cryptocompare.com/api/#-api-data-socialstats-
+
+#### Team responsibilities and Estimated dates:
+* Team: Dimitrius Hytiroglou (**DH**), Joyce Lee (**JL**), Surya Sendyl (**SS**)
+1. CrpytoCompare API
+	* Benchmarking at a particular price (**SS** - 10/8/17)
+	* Exchange rate between 2 currencies (**DH** - 10/8/17)
+	Hosting script on AWS (**DH** - 10/8/17)
+2. Twilio API
+	* Notify users when benchmark is hit (**SS** - 10/12/17)
+	Notify users when exchange rate divergence is hit (**JL** - 10/12/17)
+3. Command line interface
+	* Python script to interact with command line (**JL** - 10/15/17)
+
+## Test Plan
+#### Test Case 1: Exchange rate divergence is set very low
+* This case will allow us to test how our program is able to deal with cases where the exchange rate divergence is met frequently, possibly even multiple times a day. We don’t want to spam the user, as such, we need to be able to deal with cases where a notification message needs to get sent out, but has been preceded by a very recent notification message. In cases like these, we will likely send a summary notification message at the end of the day.
+
+#### Test Case 2: Benchmark is crossed more than once a day
+* This case allows us to test how our program is able to deal with cases where the benchmark currency value is set at an amount which is frequently crossed on any given day. Given the volatile nature of crypto assets this is definitely a feasible case. In cases like these, as with the above case, we will likely send out a summary message at the day’s end, to avoid spamming the user. 
+
+#### Test Case 3: Making trades based on our divergence notifications
+* The most important test for us will be to see if our underlying thesis about the relatedness of the price of 2 crypto currencies is actually valid. To test this we will actually make trades based on the notifications we receive, while also adjusting the threshold of divergence in exchange rates to test out various cases. 
+
