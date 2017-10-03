@@ -48,12 +48,14 @@ The output will be a notification via text message when the specified currencies
 1. CrpytoCompare API
 	* Benchmarking at a particular price (**SS** - 10/8/17)
 	* Exchange rate between 2 currencies (**DH** - 10/8/17)
-	Hosting script on AWS (**DH** - 10/8/17)
+	* Hosting script on AWS (**DH** - 10/8/17)
 2. Twilio API
 	* Notify users when benchmark is hit (**SS** - 10/12/17)
-	Notify users when exchange rate divergence is hit (**JL** - 10/12/17)
+	* Notify users when exchange rate divergence is hit (**JL** - 10/12/17)
 3. Command line interface
 	* Python script to interact with command line (**JL** - 10/15/17)
+4. Testing
+	* Test application before final due date (**ALL** - 10/17/17)
 
 ## Test Plan
 #### Test Case 1: Exchange rate divergence is set very low
