@@ -26,6 +26,34 @@ The output will be a notification via text message when the specified currency f
 
 The output will be a notification via text message when the specified currencies diverge the specified amount. Note that the amount of divergence will affect the frequency that the system sends the user notifications. The system may suggest amounts as well, for a better user experience.
 
+##Assumptions and constraints
+
+###Input 
+Regarding user input, the necessary checks will be implemented in the code to only allow proper input. Furthermore, appropriate guidelines will be given to the user to help him out.
+
+
+###Execution
+
+####User input
+It will be possible to add a new user or update an existing one at any point in time through the command line. The users and their data are stored in the Shelve database.
+
+####Notification
+The main python script will be constantly running on a server.
+At set intervals the program will:
+	1. Retrieve the user objects from the Shelve DB 
+	2. Check their variables
+	3. Query the CryptoCompare API accordingly
+	4. When necessary contact the Twillio API and send out the appropriate notification to the user.
+
+##Architecture
+The whole architecture can be found in the "To Hodl or Not to Hodl.svg" file.
+To view the .svg file properly open the image in a new tab.
+
+The major features of the program are:
+1. The main python module
+2. A shelves database that stores each users data and notification requirements
+3. The CryptoCompare API and the Twillio API
+4. The command line user interface
 
 ## Implementation Plan
 #### Features:
