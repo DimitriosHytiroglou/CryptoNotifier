@@ -47,7 +47,8 @@ At set intervals the program will:
 
 ## Architecture
 The whole architecture can be found in the "To Hodl or Not to Hodl.svg" file.
-To view the .svg file properly open the image in a new tab.
+	* Link to .svg file: https://github.com/INFO206-Fall2017/pythonpals/blob/master/To%20Hodl%20or%20Not%20to%20Hodl%20-%20Architecture.svg
+	* Link to lower quality pdf:  
 
 The main features of the program are:
 1. The main python module
