@@ -48,6 +48,7 @@ At set intervals the program will:
 ## Architecture
 A graphical layout of the whole architecture can be found in the "To Hodl or Not to Hodl.pdf" file.
 	* Link to pdf: https://github.com/INFO206-Fall2017/pythonpals/blob/master/To%20Hodl%20or%20Not%20to%20Hodl%20-%20Architecture.pdf
+
 ![](https://github.com/INFO206-Fall2017/pythonpals/blob/master/To%20Hodl%20or%20Not%20to%20Hodl%20-%20Architecture.pdf)
 
 
