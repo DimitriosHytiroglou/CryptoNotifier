@@ -46,28 +46,32 @@ At set intervals the program will:
 	4. When necessary contact the Twillio API and send out the appropriate notification to the user.
 
 ## Architecture
-The whole architecture can be found in the "To Hodl or Not to Hodl.svg or .pdf" files.
-	
-	* Link to .svg file: https://github.com/INFO206-Fall2017/pythonpals/blob/master/To%20Hodl%20or%20Not%20to%20Hodl%20-%20Architecture.svg
-
-	* Link to lower quality pdf: https://github.com/INFO206-Fall2017/pythonpals/blob/master/To%20Hodl%20or%20Not%20to%20Hodl%20-%20Architecture.pdf
+A graphical layout of the whole architecture can be found in the "To Hodl or Not to Hodl.pdf" file.
+	* Link to pdf: https://github.com/INFO206-Fall2017/pythonpals/blob/master/To%20Hodl%20or%20Not%20to%20Hodl%20-%20Architecture.pdf
+	* PDF:
+	![](https://github.com/INFO206-Fall2017/pythonpals/blob/master/To%20Hodl%20or%20Not%20to%20Hodl%20-%20Architecture.pdf?raw=true)
 
 The main features of the program are:
 1. The main python module
 2. A shelves database that stores each users data and notification requirements
-3. The CryptoCompare API and the Twillio API
-4. The command line user interface
+3. The CryptoCompare API
+4. Twillio API
+5. The command line user interface
 
 ## Implementation Plan
 #### Features:
-1. Command line interface to input currencies, benchmark or diversion amount, and cell phone number
-2. CryptoCompare API to make calls for relevant data (hosted on AWS)
-3. Twilio API to send text message notifications based on user specifications
+1. Main python module (hosted on AWS)
+2. Shelves database (hosted on AWS)
+3. CryptoCompare API to make calls for relevant data
+4. Twilio API to send text message notifications based on user specifications
+5. Command line interface to input currencies, benchmark or diversion amount, and cell phone number
 
 #### Required Algos/Data Structures for each feature:
-1. The command line interface will interact with our python scripts and take in data as as string, which will then be converted to an int or float as needed like with the case of cell phone numbers
-2. The CryptoCompare API returns data in the form of a JSON dump which then needs to be parsed further. A JSON file is composed for nested dictionaries, with various data types within it. In this specific case, the JSON output contains data in the form of strings for the currency codes and integers for the exchange rate or currency value
-3. The Twilio API takes data in the form of strings for the message content and integers for the cell phone numbers. We will be using both of these datatypes for our implementation. 
+1. Data structures to be used: classes, dictionaries, lists. We will also be using for loops and while loops as well to iterate through the various data sctructures. 
+2. The shelves database takes objects saved in python and converts them to byte code to be stored. When they are called again they get converted back. This python library makes it easy for us to do this, accepting data of various types including strings, integers and floats.
+3. The CryptoCompare API returns data in the form of a JSON dump which then needs to be parsed further. A JSON file is composed for nested dictionaries, with various data types within it. In this specific case, the JSON output contains data in the form of strings for the currency codes and integers for the exchange rate or currency value
+4. The Twilio API takes data in the form of strings for the message content and integers for the cell phone numbers. We will be using both of these datatypes for our implementation. 
+5. The command line interface will interact with our python scripts and take in data as as string, which will then be converted to an int or float as needed like with the case of cell phone numbers
 
 #### Existing work:
 * Each feature will be written by us as there has been no previous implementation like this in the past. For the CryptoCompare and Twilio APIs we will be relying on the provided documentation and examples as a starting point:
@@ -76,16 +80,18 @@ The main features of the program are:
 
 #### Team responsibilities and Estimated dates:
 * Team: Dimitrius Hytiroglou (**DH**), Joyce Lee (**JL**), Surya Sendyl (**SS**)
-1. CrpytoCompare API
+1. Shelves Database
+	* Ingesting and storing user data (**DH** - 10/8/17)
+2. CrpytoCompare API
 	* Benchmarking at a particular price (**SS** - 10/8/17)
 	* Exchange rate between 2 currencies (**DH** - 10/8/17)
 	* Hosting script on AWS (**DH** - 10/8/17)
-2. Twilio API
+3. Twilio API
 	* Notify users when benchmark is hit (**SS** - 10/12/17)
 	* Notify users when exchange rate divergence is hit (**JL** - 10/12/17)
-3. Command line interface
+4. Command line interface
 	* Python script to interact with command line (**JL** - 10/15/17)
-4. Testing
+5. Testing
 	* Test application before final due date (**ALL** - 10/17/17)
 
 ## Test Plan
