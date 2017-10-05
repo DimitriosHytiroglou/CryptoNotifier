@@ -1,6 +1,18 @@
-from person import User                                 # Load our classes
+from person import User                         # Load our classes
 
-import shelve
+import shelve                                   #import shelve database module
+
+def checkPassword():
+    pass
+    #import geatpass
+    #check = False
+    #while not check:
+    #pass = getpass.getpass()
+    #if pass == username.password:
+    #    x = True
+    #else:
+    #    print("Wrong password!"
+
 
 def retrieveUser():
     key = input("Please provide your username: ")
