@@ -28,6 +28,7 @@ def addUser():
 
 def updateUser():
     pass
+#   Choose between names, username, phone, and also add services
 #    db = shelve.open('../db/persondb')              # Reopen shelve with same filename
 #
 #    for key in sorted(db):                          # Iterate to display database objects

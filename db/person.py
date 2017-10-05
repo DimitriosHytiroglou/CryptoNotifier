@@ -42,10 +42,6 @@ class SpikeService(Service):         ###This is the price spike functionality
 
 if __name__ == '__main__':
 
-    bob = User('Bob', 'Smith', '101 789 4543')                         # Test the class
-    sue = User('Sue', 'Jacks', '010 990 8984')  # Runs __init__ automatically
-
-    print(bob)
 
 #    for obj in (bob, sue, tom):  # Process objects generically
 #        obj.giveRaise(.10)  # Run this object's giveRaise
