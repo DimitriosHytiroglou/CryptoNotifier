@@ -1,6 +1,7 @@
 import sys
 sys.path.insert(0, '../db')
 
+from person import User
 
 def retrieve_user():
     from operatedb import retrieveUser
@@ -13,10 +14,9 @@ def create_user():
     input("\nPress ENTER to continue\n")
 
 def update_user():
-    pass
-    #from operatedb import updateUser
-    #updateUser()
-    #input("\nPress ENTER to continue\n")
+    from operatedb import updateUser
+    updateUser()
+    input("\nPress ENTER to continue\n")
 
 def delete_user():
     from operatedb import deleteUser

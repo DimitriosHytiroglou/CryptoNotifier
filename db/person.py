@@ -41,7 +41,7 @@ class SpikeService(Service):         ###This is the price spike functionality
 
 
 if __name__ == '__main__':
-
+    pass
 
 #    for obj in (bob, sue, tom):  # Process objects generically
 #        obj.giveRaise(.10)  # Run this object's giveRaise

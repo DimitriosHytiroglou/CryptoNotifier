@@ -27,8 +27,40 @@ def addUser():
 
 
 def updateUser():
-    pass
-#   Choose between names, username, phone, and also add services
+    key = input("Please provide your username: ")
+    db = shelve.open('../db/persondb')  # Open shelve database
+
+    if key not in db:  # Check if username in database
+        print("There is no such user name... sorry.")  # ...
+
+    else:
+        print(key, '\t=>', db[key])  # Print user details for that username
+
+    while True:
+        print("\nSelect a the field you would like to update by typing the corresponding number:\n")       #Display menu text and instructions
+        print("""1. Update username\n2. Update first name\n3. Update last name\n4. Update telephone""")
+        user_in = input("\n> ")
+
+        if user_in == "1":
+            new_key = input("Please provide the new username: ")
+            sure = input("Are you sure you want to update this username? (Y/N)")
+            if sure.lower() == "y":
+                db[new_key] = db[key]  # Store new user object on shelve by key = username
+                del db[key]
+                print("Username updated.")
+        elif user_in == "2":
+            pass
+        elif user_in == "3":
+            pass
+        elif user_in == "4":
+            pass
+        else:
+            break
+
+
+    db.close()
+#
+# Choose between names, username, phone, and also add services
 #    db = shelve.open('../db/persondb')              # Reopen shelve with same filename
 #
 #    for key in sorted(db):                          # Iterate to display database objects
