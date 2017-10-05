@@ -1,61 +1,57 @@
 
-class Person:
-    def __init__(self, name, job = None, pay = 0):  # Constructor takes three arguments
-        self.name = name  # Fill out fields when created
-        self.job = job  # self is the new instance object
-        self.pay = pay
-
-    def lastName(self):  # Behavior methods
-        return self.name.split()[-1]  # self is implied subject
-
-    def giveRaise(self, percent):
-        self.pay = int(self.pay * (1 + percent))  # Must change here only
+class User():
+    def __init__(self, first_name, last_name, telephone, user_name):  # Constructor takes three arguments
+        self.first_name = first_name  # Fill out fields when created
+        self.last_name = last_name  # self is the new instance object
+        self.telephone = telephone
+        self.user_name = user_name
 
     def __repr__(self):  # Added method
-        return '[Person: %s, %s]' % (self.name, self.pay)  # String to print
+        return '[User: %s, %s, %s]' % (self.first_name, self.last_name, self.telephone)  # String to print
 
-class Manager(Person):                          # Define a subclass of Person  which inherits Person attributes
-    def __init__(self, name, pay):  # Redefine constructor
-        Person.__init__(self, name, 'mgr', pay)  # Run original with 'mgr'
+    def updateFirstName(self, new_first_name):
+        print("Old name: ", self.first_name)  ##Placeholder text
+        self.first_name = new_first_name
+        print("--- changed to ---")
+        print("New name: ", self.first_name)
 
-    def giveRaise(self, percent, bonus=.10):  # Redefine to customize
-        Person.giveRaise(self, percent + bonus)  # Good: augment original
+    def updateLastName(self):
+        print(self.Last_Name)
 
-class Department:
+class Service():
     def __init__(self, *args):
         self.members = list(args)
+
     def addMember(self, person):
         self.members.append(person)
-    def giveRaises(self, percent):
-        for person in self.members:
-            person.giveRaise(percent)
+
     def showAll(self):
         for person in self.members:
             print(person)
 
+class DivergenceService(Service):    ###This is the exchange divergence functionality
+    def __init__(self, *args):
+        Service.__init__(self, *args)
+        self.members = list(args)
+
+class SpikeService(Service):         ###This is the price spike functionality
+    def __init__(self, *args):
+        Service.__init__(self, *args)
+        self.members = list(args)
+
 
 if __name__ == '__main__':
-    bob = Person('Bob Smith')                         # Test the class
-    sue = Person('Sue Jones', job='dev', pay=100000)  # Runs __init__ automatically
-    print(bob)
-    print(sue)
-    print(bob.name, bob.pay)                          # Fetch attached attributes
-    print(sue.name, sue.pay)                          # sue's and bob's attrs differ
-    print(bob.lastName(), sue.lastName())  # Use the new methods
-    sue.giveRaise(.10)  # instead of hardcoding
-    print(sue.pay)
-    print(sue)
-    #tom = Manager('Tom Jones', 'mgr', 50000)  # Make a Manager: __init__
-    tom = Manager('Tom Jones', 50000)  # Job name not needed:
-    tom.giveRaise(.10)  # Runs custom version
-    print(tom.lastName())  # Runs inherited method
-    print(tom)
-    print('--All three--')
-    for obj in (bob, sue, tom):  # Process objects generically
-        obj.giveRaise(.10)  # Run this object's giveRaise
-        print(obj)  # Run the common __repr__
 
-    development = Department(bob, sue)  # Embed objects in a composite
-    development.addMember(tom)
-    development.giveRaises(.10)  # Runs embedded objects' giveRaise
-    development.showAll()  # Runs embedded objects' __repr__
+    bob = User('Bob', 'Smith', '101 789 4543')                         # Test the class
+    sue = User('Sue', 'Jacks', '010 990 8984')  # Runs __init__ automatically
+
+    print(bob)
+
+#    for obj in (bob, sue, tom):  # Process objects generically
+#        obj.giveRaise(.10)  # Run this object's giveRaise
+#        print(obj)  # Run the common __repr__
+#
+#    development = Department(bob, sue)  # Embed objects in a composite
+#    development.addMember(tom)
+#    development.giveRaises(.10)  # Runs embedded objects' giveRaise
+#    development.showAll()  # Runs embedded objects' __repr__

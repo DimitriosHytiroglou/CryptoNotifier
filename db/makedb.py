@@ -1,11 +1,16 @@
-from person import Person, Manager               # Load our classes
-
-bob = Person('Bob Smith')                        # Re-create objects to be stored
-sue = Person('Sue Jones', job='dev', pay=100000)
-tom = Manager('Tom Jones', 50000)
+from person import User               # Load our classes
 
 import shelve
-db = shelve.open('persondb')                     # Filename where objects are stored
-for obj in (bob, sue, tom):                      # Use object's name attr as key
-    db[obj.name] = obj                           # Store object on shelve by key
-db.close()                                       # Close after making changes
+
+def addUser():
+    first_name = input("Give first name: ")                        #Retrieve new user data
+    last_name = input("Give last name: ")                          #...
+    telephone = input("Give telephone: ")                          #...
+    user_name = input("Give username: ")                           #...
+
+    new_user = User(first_name, last_name, telephone, user_name)   #Create instance of class User with new data
+
+    db = shelve.open('../db/persondb')                             # Open shelve database
+    db[new_user.user_name] = new_user                              # Store new user object on shelve by key = username
+    db.close()                                                     # Close shelve database after making changes
+
