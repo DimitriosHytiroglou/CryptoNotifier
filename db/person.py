@@ -40,6 +40,32 @@ class SpikeService(Service):         ###This is the price spike functionality
         self.members = list(args)
 
 
+### ServiceMember classes ###
+
+
+class MemberServices():
+    def __init__(self, currency1, currency2, price):
+        self.Services = []          ###Initiates the list of Services for the user
+        self.Services.append([currency1, currency2, price])
+
+    def addService(self, currency1, currency2, price):
+        self.Services.append([currency1, currency2, price])
+
+
+class MemberDivergenceServices(MemberServices):
+    def __init__(self, currency1, currency2, price):
+        MemberServices.__init__(self, currency1, currency2, price)
+        #ServiceMember.Services[len(ServiceMember.Services)].append(1)
+
+
+class MemberSpikeServices(MemberServices):
+    def __init__(self, currency1, currency2, price, direction):
+        MemberServices.__init__(self, currency1, currency2, price)
+        self.Services[len(self.Services)-1].append(direction)
+
+    def addService(self, currency1, currency2, price, direction):
+        self.Services.append([currency1, currency2, price, direction])
+
 if __name__ == '__main__':
     pass
 
