@@ -6,6 +6,9 @@ class User():
         self.telephone = telephone
         self.user_name = user_name
 
+        import random
+        self.serviceID = str(random.getrandbits(128))
+
     def __repr__(self):  # Added method
         return '[User: %s, %s, %s]' % (self.first_name, self.last_name, self.telephone)  # String to print
 
@@ -17,6 +20,7 @@ class User():
 
     def updateLastName(self):
         print(self.Last_Name)
+
 
 class Service():
     def __init__(self, *args):
@@ -55,7 +59,6 @@ class MemberServices():
 class MemberDivergenceServices(MemberServices):
     def __init__(self, currency1, currency2, price):
         MemberServices.__init__(self, currency1, currency2, price)
-        #ServiceMember.Services[len(ServiceMember.Services)].append(1)
 
 
 class MemberSpikeServices(MemberServices):
@@ -65,6 +68,11 @@ class MemberSpikeServices(MemberServices):
 
     def addService(self, currency1, currency2, price, direction):
         self.Services.append([currency1, currency2, price, direction])
+
+
+def initializeServices():                                       #Initializes an instance of each class with an empty list
+    return DivergenceService("init"), SpikeService("init")
+
 
 if __name__ == '__main__':
     pass

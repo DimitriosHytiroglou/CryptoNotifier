@@ -18,10 +18,16 @@ def update_user():
     updateUser()
     input("\nPress ENTER to continue\n")
 
+def add_service():
+    from operatedb import addService
+    addService()
+    input("\nPress ENTER to continue\n")
+
 def delete_user():
     from operatedb import deleteUser
     deleteUser()
     input("\nPress ENTER to continue\n")
+
 
 def main():
 
@@ -29,7 +35,7 @@ def main():
 
     while True:
         print("Select a task by typing the corresponding number:\n")       #Display menu text and instructions
-        print("""1. Retrieve user\n2. Create new user\n3. Update user\n4. Delete user""")
+        print("""1. Retrieve user\n2. Create new user\n3. Update user\n4. Delete user\n5. Add service""")
         user_in = input("\n> ")
 
         if user_in.lower() == "exit":
@@ -48,6 +54,13 @@ def main():
         if user_in == "4":
             delete_user()
 
+        if user_in == "5":
+            add_service()
+
+        #ADD Admin overide
+            #print("Entered admin override mode!")
+            #Show all users
+            #Export all users in CSV
 
 if __name__ == "__main__":
     main()
