@@ -1,4 +1,5 @@
 from person import User                         # Load our classes
+from person import DivergenceService, SpikeService, MemberDivergenceServices, MemberSpikeServices
 
 import shelve                                   #import shelve database module
 
@@ -83,6 +84,37 @@ def updateUser():
 #    #db['Sue'] = sue                                # Assign to key to update in shelve
 #    #print(db['Sue'])
 #    db.close()                                      # Close after making changes
+
+
+def addService():
+    user_name = input("Give username: ")
+
+    print("\nSelect what service you want to add by typing the corresponding number:\n")  # Display menu text and instructions
+    print("""1. Divergence Notification Service\n2. Spike Notification Service""")
+    user_in = input("\n> ")
+
+    if user_in == "1":
+        print("Divergence Notification Service selected.\nPlease provide your service requirements below:")
+        currency1 = input("Choose the first currency: ")
+        currency2 = input("Choose the second currency: ")
+        divergence = input("Inpu the divergence in prices that you seek to me notified about: ")
+
+        db = shelve.open('../db/persondb')
+
+        ID = db[user_name].serviceID
+
+
+        db[ID] = MemberDivergenceServices(currency1, currency2, divergence)
+
+
+        db.close()
+
+
+    elif user_in == "2":
+        pass
+
+    else:
+        print("goob")
 
 def deleteUser():
     key = input("Give the username you want to delete: ")
