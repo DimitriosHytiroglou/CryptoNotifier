@@ -60,6 +60,8 @@ class MemberDivergenceServices(MemberServices):
     def __init__(self, currency1, currency2, price):
         MemberServices.__init__(self, currency1, currency2, price)
 
+    def addService(self, currency1, currency2, price):
+        self.Services.append([currency1, currency2, price])
 
 class MemberSpikeServices(MemberServices):
     def __init__(self, currency1, currency2, price, direction):
