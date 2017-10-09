@@ -33,20 +33,20 @@ def retrieveUser():
 
 def retrieveUserServices(user_serviceID):
     #db = shelve.open('../db/persondb')  # Open shelve database
-    DivergenceDB = shelve.open('../db/personDivergenceDB')
+    DivergenceDB = shelve.open('../db/personDivergenceDB')          # Open the Divergence Services database
 
-    if user_serviceID in DivergenceDB:
+    if user_serviceID in DivergenceDB:                              #Check if there is an entry for this user in the database
         print("\nDivergence services: ")
-        for services in DivergenceDB[user_serviceID].Services:
+        for services in DivergenceDB[user_serviceID].Services:      #Iterate through the Services of the user and print them
             print(services)
 
     DivergenceDB.close()
 
-    SpikeDB = shelve.open('../db/personSpikeDB')
+    SpikeDB = shelve.open('../db/personSpikeDB')                    # Open the Divergence Services database
 
-    if user_serviceID in SpikeDB:
+    if user_serviceID in SpikeDB:                                   #Check if there is an entry for this user in the database
         print("\nSpike services: ")
-        for services in SpikeDB[user_serviceID].Services:
+        for services in SpikeDB[user_serviceID].Services:           #Iterate through the Services of the user and print them
             print(services)
 
     SpikeDB.close()
@@ -144,6 +144,11 @@ def addService():
         else:
             DivergenceDB[ID] = MemberDivergenceServices(currency1, currency2, divergence)  # Create a key in the database with the user's serviceID and a value of his specs
 
+        position = len(DivergenceDB[ID].Services)
+        List_tmp = DivergenceDB['DivergenceServiceList']        #Enter the added services to the list of active Diergence services
+        List_tmp.members.append([ID,position])                  #...
+        DivergenceDB['DivergenceServiceList'] = List_tmp        #...
+
         DivergenceDB.close()
         db.close()
 
@@ -167,6 +172,11 @@ def addService():
             SpikeDB[ID] = tmp
         else:
             SpikeDB[ID] = MemberSpikeServices(currency1, currency2, divergence, relativity)  # Create a key in the database with the user's serviceID and a value of his specs
+
+        position = len(SpikeDB[ID].Services)
+        List_tmp = SpikeDB['SpikeServiceList']  # Enter the added services to the list of active Diergence services
+        List_tmp.members.append([ID, position])  # ...
+        SpikeDB['SpikeServiceList'] = List_tmp  # ...
 
         SpikeDB.close()
         db.close()

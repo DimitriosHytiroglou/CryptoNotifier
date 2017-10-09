@@ -1,11 +1,14 @@
 import person
 import shelve
 
-db = shelve.open('../db/persondb')
+DivergenceDB = shelve.open('../db/personDivergenceDB')
+SpikeDB = shelve.open('../db/personSpikeDB')
+
 
 DivergenceServiceList, SpikeServiceList = person.initializeServices()
 
-db['DivergenceServiceList'] = DivergenceServiceList
-db['SpikeServiceList'] = SpikeServiceList
+DivergenceDB['DivergenceServiceList'] = DivergenceServiceList
+SpikeDB['SpikeServiceList'] = SpikeServiceList
 
-db.close()
+DivergenceDB.close()
+SpikeDB.close()

@@ -38,6 +38,7 @@ class DivergenceService(Service):    ###This is the exchange divergence function
         Service.__init__(self, *args)
         self.members = list(args)
 
+
 class SpikeService(Service):         ###This is the price spike functionality
     def __init__(self, *args):
         Service.__init__(self, *args)
