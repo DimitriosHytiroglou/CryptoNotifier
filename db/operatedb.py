@@ -32,7 +32,6 @@ def retrieveUser():
 
 
 def retrieveUserServices(user_serviceID):
-    #db = shelve.open('../db/persondb')  # Open shelve database
     DivergenceDB = shelve.open('../db/personDivergenceDB')          # Open the Divergence Services database
 
     if user_serviceID in DivergenceDB:                              #Check if there is an entry for this user in the database
@@ -50,12 +49,6 @@ def retrieveUserServices(user_serviceID):
             print(services)
 
     SpikeDB.close()
-
-    #print(type(db[user_serviceID]))
-    #else:
-        #pass
-
-    #db.close()
 
 
 def addUser():
@@ -99,7 +92,6 @@ def updateUser():
             pass
         else:
             break
-
 
     db.close()
 #
