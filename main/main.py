@@ -7,10 +7,6 @@ import shelve
 from CryptoCheck import check_Divergence, check_Spike
 import requests as rqst
 
-#from CryptoAPI import CryptoFunction
-
-#Exchange_rates = CryptoFunction                    #Get Library containing Crypto exchange rates
-
 
 def Cryptolog():
     request_string = rqst.get('https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=USD,BTC,BCH,ETH,LTC,LSK,NEO,XRP')
@@ -56,7 +52,7 @@ while i <= len(DivergenceDB['DivergenceServiceList'].members)-1:
 
             #print(first_name)
             #print(telephone)
-    
+
     #print(coin_dict[coin1])
     #print(coin_dict[coin2])
     ex_rate = float(coin_dict[coin1])/float(coin_dict[coin2])
@@ -65,11 +61,56 @@ while i <= len(DivergenceDB['DivergenceServiceList'].members)-1:
 
     check_Divergence(coin1, coin2, user_signal, ex_rate, first_name, telephone)
 
+DivergenceDB.close()
+
+
 #Go through the Spike subscribes
 
+SpikeDB = shelve.open('../db/personSpikeDB')
+
+i = 1
+while i <= len(SpikeDB['SpikeServiceList'].members)-1:
+
+    userID =  SpikeDB['SpikeServiceList'].members[i][0]
+    userServicePosition = SpikeDB['SpikeServiceList'].members[i][1]
+
+    # print(userID)
+    #print(userServicePosition)
+    #print(DivergenceDB[userID].Services[userServicePosition - 1])
+
+    coin1 = SpikeDB[userID].Services[userServicePosition - 1][0]
+    coin2 = SpikeDB[userID].Services[userServicePosition - 1][1]
+    user_signal = float(SpikeDB[userID].Services[userServicePosition - 1][2])
+
+    #print(coin1)
+    #print(coin2)
+    #print(user_signal)
+
+    for user in userDB:
+        print(userDB[user])
+        if userDB[user].serviceID == userID:
+            #print(user)
+            user_name = user
+            #print("username is: "+str(user))
+
+            first_name = userDB[user_name].first_name
+            telephone = userDB[user_name].telephone
+
+            #print(first_name)
+            #print(telephone)
+
+    #print(coin_dict[coin1])
+    #print(coin_dict[coin2])
+    ex_rate = float(coin_dict[coin1])/float(coin_dict[coin2])
+
+    i+=1
+
+    check_Spike(coin1, coin2, user_signal, ex_rate, first_name, telephone)
+
+SpikeDB.close()
 
 ####
-#### Add username - userID join table, saved in another shelveto avoid the for loop
+#### Add username - userID join table, saved in another shelve DB to avoid the for loop
 ####
 
 #Add code to ensure that initializeDB runs on first time
