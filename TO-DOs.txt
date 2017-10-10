@@ -1,0 +1,12 @@
+
+- Block recurring notifications to same user for same issue
+
+- Fix UX, user guidance
+
+- Add more currencies
+
+- Fix GitHub DB issue 
+
+- Host on AWS
+
+- Fix user retrieval issue, for wrong username
