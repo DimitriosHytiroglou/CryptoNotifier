@@ -59,5 +59,8 @@ while i <= len(DivergenceDB['DivergenceServiceList'].members)-1:
 #Go through the Spike subscribes
 
 
+####
+#### Add username - userID join table, saved in another shelveto avoid the for loop
+####
 
 #Add code to ensure that initializeDB runs on first time
