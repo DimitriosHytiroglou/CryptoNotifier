@@ -19,16 +19,16 @@ def retrieveUser():
     key = input("Please provide your username: ")
     db = shelve.open('../db/persondb')                  # Open shelve database
     if key not in db:                                   # Check if username in database
-        print("There is no such user name... sorry.")   #...
+        print("Uh oh! Username not found. Please try again or create new username.")   #...
     else:
         #for key in sorted(db):                         # IGNORE THIS LINE
         print(key, '\t=>', db[key])                     # Print user details for that username
 
-    user_serviceID = db[key].serviceID
-    db.close()                                          # Close after making changes
+        user_serviceID = db[key].serviceID
+        db.close()                                          # Close after making changes
 
-    print("\nThis user's services include: ")              # Call the retrieveUserServices function to print the services of this user
-    retrieveUserServices(user_serviceID)
+        print("\nServices include: ")              # Call the retrieveUserServices function to print the services of this user
+        retrieveUserServices(user_serviceID)
 
 
 def retrieveUserServices(user_serviceID):
@@ -52,10 +52,10 @@ def retrieveUserServices(user_serviceID):
 
 
 def addUser():
-    first_name = input("Give first name: ")                        #Input new user data
-    last_name = input("Give last name: ")                          #...
-    telephone = input("Give telephone: ")                          #...
-    user_name = input("Give username: ")                           #...
+    first_name = input("Enter first name: ")                        #Input new user data
+    last_name = input("Enter last name (enter '-' if you prefer not to disclose): ")                          #...
+    telephone = input("Enter telephone: ")                          #...
+    user_name = input("Enter username: ")                           #...
 
     new_user = User(first_name, last_name, telephone, user_name)   #Create instance of class User with new data
 
@@ -65,11 +65,11 @@ def addUser():
 
 
 def updateUser():
-    key = input("Please provide your username: ")
+    key = input("Enter your username: ")
     db = shelve.open('../db/persondb')  # Open shelve database
 
     if key not in db:  # Check if username in database
-        print("There is no such user name... sorry.")  # ...
+        print("Uh oh! Username not found. Please try again or create new username.")  # ...
 
     else:
         print(key, '\t=>', db[key])  # Print user details for that username
@@ -113,15 +113,15 @@ def updateUser():
 def addService():
     user_name = input("Give username: ")
 
-    print("\nSelect what service you want to add by typing the corresponding number:\n")  # Display menu text and instructions
-    print("""1. Divergence Notification Service\n2. Spike Notification Service""")
+    print("\nAdd a service by typing the corresponding number:\n")  # Display menu text and instructions
+    print("""1. Divergence Notifications: Watch two currencies and receive notifications when they diverge by a specified amount.\n2. Spike Notifications: Get notified when a currency is above/below a specified point.""")
     user_in = input("\n> ")
 
     if user_in == "1":
-        print("Divergence Notification Service selected.\nPlease provide your service requirements below:")
-        currency1 = input("Choose the first currency: ")
-        currency2 = input("Choose the second currency: ")
-        divergence = input("Input the divergence in prices that you seek to me notified about: ")
+        print("You've selected the Spike Notifications service.")
+        currency1 = input("Enter your first currency to watch: ")
+        currency2 = input("Enter your second currency to watch: ")
+        divergence = input("What is the divergence in prices you'd like to be notified about? : ")
 
         db = shelve.open('../db/persondb')
 
@@ -147,9 +147,9 @@ def addService():
 
     elif user_in == "2":
         print("Spike Notification Service selected.\nPlease provide your service requirements below:")
-        currency1 = input("Choose the first currency: ")
-        currency2 = input("Choose the second currency: ")
-        divergence = input("Input the price that you seek to me notified about: ")
+        currency1 = input("Enter your first currency to watch: ")           #These should read: Choose the currency you want to watch
+        currency2 = input("Enter your second currency to watch: ")          #Choose in what currency terms you will give the price to watch
+        divergence = input("What is the price you'd like to be notified about? ")       # Maybe swap this with the one above to make it clearer
         relativity = input("Input whether you care about that price and higher or lower.(H/L)")
 
         db = shelve.open('../db/persondb')
@@ -175,10 +175,10 @@ def addService():
 
 
     else:
-        print("goob")
+        print("Sorry! We didn't recognize your input.")
 
 def deleteUser():
-    key = input("Give the username you want to delete: ")
+    key = input("Enter the username you want to delete: ")
     sure = input("Are you sure you want to delete this user? (Y/N)")
     if sure.lower() == "y":
         db = shelve.open('../db/persondb')

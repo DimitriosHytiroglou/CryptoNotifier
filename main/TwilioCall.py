@@ -11,11 +11,11 @@ coin = ["BTC"]
 price = 3942
 pivot_point = 4000
 
-# User data
-surya_number = "+18184147092"
-bitchass_number = "+15103092040"
-user1 = "Surya"
-user2 = "Bitchass"
+# User data                                 ##TO BE REMOVED
+surya_number = "+18184147092"               ##TO BE REMOVED
+bitchass_number = "+15103092040"            ##TO BE REMOVED
+user1 = "Surya"                             ##TO BE REMOVED
+user2 = "Bitchass"                          ##TO BE REMOVED
 
 # Twilio account SID, auth token
 account_sid = "AC9629dc758c9d995440c7b90b5542d86c"
