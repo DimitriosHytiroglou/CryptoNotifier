@@ -14,8 +14,6 @@ def Cryptolog():
     return coin_dict
 
 coin_dict = Cryptolog()
-#Test Ether in Bitcoins 0.0615 0.061
-#ex_rate = 1                                         #DELETE THIS EXAMPLE
 
 userDB = shelve.open('../db/persondb')
 
@@ -81,6 +79,7 @@ while i <= len(SpikeDB['SpikeServiceList'].members)-1:
     coin1 = SpikeDB[userID].Services[userServicePosition - 1][0]
     coin2 = SpikeDB[userID].Services[userServicePosition - 1][1]
     user_signal = float(SpikeDB[userID].Services[userServicePosition - 1][2])
+    direction = float(SpikeDB[userID].Services[userServicePosition - 1][3])
 
     #print(coin1)
     #print(coin2)
