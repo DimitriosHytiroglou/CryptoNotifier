@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, '../db')
 from twilio.rest import Client
 
 # ExchangeRate coin data
@@ -38,13 +40,13 @@ def check_rate(coin1, coin2, ex_rate, user_signal, direction, first_name, teleph
 			pass
 
 # Send exchange rate notification function
-def send_er_notification(coin1, coin2, user_signal, first_name, telephone, way):
+def send_er_notification(coin1, coin2, user_signal, first_name, telephone):
 	message = client.messages.create(
 	    to = telephone,		  #user number
 	    from_ = "+17797747983",   # Account Twilio Number
 	    body = ("Hey, " + first_name +": the exchange rate between " +
 	    		str(coin1) + " and " + str(coin2) +
-	    		" just crossed " + way + str(user_signal)
+	    		" just crossed " + str(user_signal)
 	    		+ "! " + "TO HODL OR NOT TO HODL???"))
 
 	print("Sent: ",message.sid)
@@ -96,4 +98,4 @@ def main():
 	check_rate()
 	check_pivot()
 
-main()
+#main()
