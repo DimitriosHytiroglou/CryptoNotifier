@@ -42,7 +42,7 @@ while i <= len(DivergenceDB['DivergenceServiceList'].members)-1:
         if userDB[user].serviceID == userID:
             print(user)
             user_name = user
-            print("username is: "+str(user))
+            print("Username is: "+str(user))
 
             first_name = userDB[user_name].first_name
             telephone = userDB[user_name].telephone
