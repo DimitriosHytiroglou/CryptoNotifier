@@ -1,6 +1,6 @@
 from twilio.rest import Client
 
-# Er coin data
+# ExchangeRate coin data
 coin_pair = ["BTC", "ETH"]
 exchange_rate = 1.3
 
@@ -20,25 +20,51 @@ account_sid = "AC9629dc758c9d995440c7b90b5542d86c"
 auth_token  = "b13ff78cc4235ddbabcf41decd4269ee"
 client = Client(account_sid, auth_token)
 
-
 # Check rate function
-def check_rate():
-	while exchange_rate <= 1.1:
-		pass
-	else:
-		send_er_notification()
+def check_rate(ex_rate, user_signal, direction):
+	if direction == 'H':
+		if ex_rate <= user_signal:
+			send_er_notification()
+		else:
+			pass
+	elif direction == 'L':
+		if ex_rate >= user_signal:
+			send_er_notification()
+		else:
+			pass
 
 # Send exchange rate notification function
 def send_er_notification():
 	message = client.messages.create(
 	    to = surya_number,
 	    from_ = "+17797747983",   # Account Twilio Number
-	    body = ("Hey, " + user1 +": the exchange rate between " + 
-	    		str(coin_pair[0]) + " and " + str(coin_pair[1]) + 
+	    body = ("Hey, " + user1 +": the exchange rate between " +
+	    		str(coin_pair[0]) + " and " + str(coin_pair[1]) +
 	    		" just crossed " + str(exchange_rate)
 	    		+ "! " + "TO HODL OR NOT TO HODL???"))
 
 	print("Sent: ",message.sid)
+
+
+
+# Check rate function
+#def check_rate():
+#	while exchange_rate <= 1.1:
+#		pass
+#	else:
+#		send_er_notification()
+
+# Send exchange rate notification function
+#def send_er_notification():
+#	message = client.messages.create(
+#	    to = surya_number,
+#	    from_ = "+17797747983",   # Account Twilio Number
+#	    body = ("Hey, " + user1 +": the exchange rate between " +
+#	    		str(coin_pair[0]) + " and " + str(coin_pair[1]) +
+#	    		" just crossed " + str(exchange_rate)
+#	    		+ "! " + "TO HODL OR NOT TO HODL???"))
+#
+#	print("Sent: ",message.sid)
 
 
 # Check pivot function

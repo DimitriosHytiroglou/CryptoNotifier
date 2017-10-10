@@ -5,7 +5,7 @@ import shelve                                   #import shelve database module
 
 def checkPassword():
     pass
-    #import geatpass
+    #import getpass
     #check = False
     #while not check:
     #pass = getpass.getpass()
@@ -23,7 +23,39 @@ def retrieveUser():
     else:
         #for key in sorted(db):                         # IGNORE THIS LINE
         print(key, '\t=>', db[key])                     # Print user details for that username
+
+    user_serviceID = db[key].serviceID
     db.close()                                          # Close after making changes
+
+    print("\nThis user's services include: ")              # Call the retrieveUserServices function to print the services of this user
+    retrieveUserServices(user_serviceID)
+
+
+def retrieveUserServices(user_serviceID):
+    #db = shelve.open('../db/persondb')  # Open shelve database
+    DivergenceDB = shelve.open('../db/personDivergenceDB')          # Open the Divergence Services database
+
+    if user_serviceID in DivergenceDB:                              #Check if there is an entry for this user in the database
+        print("\nDivergence services: ")
+        for services in DivergenceDB[user_serviceID].Services:      #Iterate through the Services of the user and print them
+            print(services)
+
+    DivergenceDB.close()
+
+    SpikeDB = shelve.open('../db/personSpikeDB')                    # Open the Divergence Services database
+
+    if user_serviceID in SpikeDB:                                   #Check if there is an entry for this user in the database
+        print("\nSpike services: ")
+        for services in SpikeDB[user_serviceID].Services:           #Iterate through the Services of the user and print them
+            print(services)
+
+    SpikeDB.close()
+
+    #print(type(db[user_serviceID]))
+    #else:
+        #pass
+
+    #db.close()
 
 
 def addUser():
@@ -97,21 +129,58 @@ def addService():
         print("Divergence Notification Service selected.\nPlease provide your service requirements below:")
         currency1 = input("Choose the first currency: ")
         currency2 = input("Choose the second currency: ")
-        divergence = input("Inpu the divergence in prices that you seek to me notified about: ")
+        divergence = input("Input the divergence in prices that you seek to me notified about: ")
 
         db = shelve.open('../db/persondb')
 
         ID = db[user_name].serviceID
 
+        DivergenceDB = shelve.open('../db/personDivergenceDB')
 
-        db[ID] = MemberDivergenceServices(currency1, currency2, divergence)
+        if ID in DivergenceDB:
+            tmp = DivergenceDB[ID]
+            tmp.Services.append([currency1, currency2, divergence])
+            DivergenceDB[ID] = tmp
+        else:
+            DivergenceDB[ID] = MemberDivergenceServices(currency1, currency2, divergence)  # Create a key in the database with the user's serviceID and a value of his specs
 
+        position = len(DivergenceDB[ID].Services)
+        List_tmp = DivergenceDB['DivergenceServiceList']        #Enter the added services to the list of active Diergence services
+        List_tmp.members.append([ID,position])                  #...
+        DivergenceDB['DivergenceServiceList'] = List_tmp        #...
 
+        DivergenceDB.close()
         db.close()
 
 
     elif user_in == "2":
-        pass
+        print("Spike Notification Service selected.\nPlease provide your service requirements below:")
+        currency1 = input("Choose the first currency: ")
+        currency2 = input("Choose the second currency: ")
+        divergence = input("Input the price that you seek to me notified about: ")
+        relativity = input("Input whether you care about that price and higher or lower.(H/L)")
+
+        db = shelve.open('../db/persondb')
+
+        ID = db[user_name].serviceID
+
+        SpikeDB = shelve.open('../db/personSpikeDB')
+
+        if ID in SpikeDB:
+            tmp = SpikeDB[ID]
+            tmp.Services.append([currency1, currency2, divergence])
+            SpikeDB[ID] = tmp
+        else:
+            SpikeDB[ID] = MemberSpikeServices(currency1, currency2, divergence, relativity)  # Create a key in the database with the user's serviceID and a value of his specs
+
+        position = len(SpikeDB[ID].Services)
+        List_tmp = SpikeDB['SpikeServiceList']  # Enter the added services to the list of active Diergence services
+        List_tmp.members.append([ID, position])  # ...
+        SpikeDB['SpikeServiceList'] = List_tmp  # ...
+
+        SpikeDB.close()
+        db.close()
+
 
     else:
         print("goob")
