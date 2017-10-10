@@ -38,13 +38,26 @@ def send_er_notification(coin1, coin2, user_signal, first_name, telephone):
 
 
 # Send pivot notification function
-def send_pivot_notification():
-	message = client.messages.create(
-	    to = surya_number,
-	    from_ = "+17797747983",   # Account Twilio Number
-	    body = ("Hey, " + user1 + ": the price of " +
-	    		str(coin[0]) + " just went below " +
-	    		str(pivot_point) + "! " 
-	    		+ "TO HODL OR NOT TO HODL???"))
+def send_pivot_notification(coin1, coin2, user_signal, first_name, telephone, way):
+
+	if way == "below ":
+
+		message = client.messages.create(
+			to=telephone,
+			from_="+17797747983",  # Account Twilio Number
+			body=("Hey, " + first_name + ": the price of " +
+				  coin1 + " just went " + way +
+			      user_signal + "! "
+			  	  + "TO HODL OR NOT TO HODL???"))
+
+	elif way == "above ":
+
+		message = client.messages.create(
+	    	to = telephone,
+	    	from_ = "+17797747983",   # Account Twilio Number
+	    	body = ("Hey, " + first_name + ": the price of " +
+	    			coin1 + " just went " + way +
+	    			user_signal + "! "
+	    			+ "TO HODL OR NOT TO HODL???"))
 
 	print("Sent: ",message.sid)

@@ -55,7 +55,7 @@ while i <= len(DivergenceDB['DivergenceServiceList'].members)-1:
 
     #print(coin_dict[coin1])
     #print(coin_dict[coin2])
-    ex_rate = float(coin_dict[coin1])/float(coin_dict[coin2])
+    ex_rate = float(coin_dict[coin2])/float(coin_dict[coin1])
 
     i+=1
 
@@ -101,7 +101,7 @@ while i <= len(SpikeDB['SpikeServiceList'].members)-1:
 
     #print(coin_dict[coin1])
     #print(coin_dict[coin2])
-    ex_rate = float(coin_dict[coin1])/float(coin_dict[coin2])
+    ex_rate = float(coin_dict[coin1])/float(coin_dict[coin2])  
 
     i+=1
 
