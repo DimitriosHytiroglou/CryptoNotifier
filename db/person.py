@@ -2,7 +2,7 @@
 class User():
     def __init__(self, first_name, last_name, telephone, user_name):  # Constructor takes three arguments
         self.first_name = first_name  # Fill out fields when created
-        self.last_name = last_name
+        self.last_name = last_name  # self is the new instance object
         self.telephone = telephone
         self.user_name = user_name
 
@@ -17,6 +17,10 @@ class User():
         self.first_name = new_first_name
         print("--- changed to ---")
         print("New name: ", self.first_name)
+
+    def updateLastName(self):
+        print(self.Last_Name)
+
 
 class Service():
     def __init__(self, *args):
@@ -42,6 +46,7 @@ class SpikeService(Service):         ###This is the price spike functionality
 
 
 ### ServiceMember classes ###
+
 
 class MemberServices():
     def __init__(self, currency1, currency2, price):
