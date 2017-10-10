@@ -35,27 +35,27 @@ def main():
 
     while True:
         print("Select a task by typing the corresponding number:\n")       #Display menu text and instructions
-        print("""1. Retrieve user\n2. Create new user\n3. Update user\n4. Delete user\n5. Add service""")
+        print("""1. Create new user\n2. Add new service\n3. View user services summary\n4. Update user\n5. Delete user""")
         user_in = input("\n> ")
 
         if user_in.lower() == "exit":
-            print("\nGood bye!")
+            print("\nGoodbye!")
             break
 
         if user_in == "1":
-            retrieve_user()
-
-        if user_in == "2":
             create_user()
 
+        if user_in == "2":
+            add_service()
+
         if user_in == "3":
-            update_user()
+            retrieve_user()
 
         if user_in == "4":
-            delete_user()
+            update_user()
 
         if user_in == "5":
-            add_service()
+            delete_user()
 
         #ADD Admin overide
             #print("Entered admin override mode!")
