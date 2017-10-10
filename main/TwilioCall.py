@@ -31,7 +31,8 @@ def send_er_notification(coin1, coin2, user_signal, first_name, telephone):
 	    body = ("Hey, " + first_name +": the exchange rate between " +
 	    		str(coin1) + " and " + str(coin2) +
 	    		" just crossed " + str(user_signal)
-	    		+ "! " + "TO HODL OR NOT TO HODL???"))
+	    		+ "! " + "TO HODL OR NOT TO HODL???" +
+				"Get more info at"))
 
 	print("Sent: ",message.sid)
 

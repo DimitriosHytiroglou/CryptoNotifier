@@ -51,12 +51,6 @@ def retrieveUserServices(user_serviceID):
 
     SpikeDB.close()
 
-    #print(type(db[user_serviceID]))
-    #else:
-        #pass
-
-    #db.close()
-
 
 def addUser():
     first_name = input("Give first name: ")                        #Input new user data

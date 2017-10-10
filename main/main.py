@@ -5,12 +5,21 @@ import sys
 sys.path.insert(0, '../db')
 import shelve
 from CryptoCheck import check_Divergence, check_Spike
+import requests as rqst
 
 #from CryptoAPI import CryptoFunction
 
 #Exchange_rates = CryptoFunction                    #Get Library containing Crypto exchange rates
 
-ex_rate = 1                                         #DELETE THIS EXAMPLE
+
+def Cryptolog():
+    request_string = rqst.get('https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=USD,BTC,BCH,ETH,LTC,LSK,NEO,XRP')
+    coin_dict = request_string.json()
+    return coin_dict
+
+coin_dict = Cryptolog()
+#Test Ether in Bitcoins 0.0615 0.061
+#ex_rate = 1                                         #DELETE THIS EXAMPLE
 
 userDB = shelve.open('../db/persondb')
 
@@ -19,38 +28,38 @@ DivergenceDB = shelve.open('../db/personDivergenceDB')
 
 i = 1
 while i <= len(DivergenceDB['DivergenceServiceList'].members)-1:
-    #print(DivergenceDB['DivergenceServiceList'].members[i])
+
     userID =  DivergenceDB['DivergenceServiceList'].members[i][0]
     userServicePosition = DivergenceDB['DivergenceServiceList'].members[i][1]
-    print(userID)
-    print(userServicePosition)
-    print(DivergenceDB[userID].Services[userServicePosition - 1])
+
+    # print(userID)
+    #print(userServicePosition)
+    #print(DivergenceDB[userID].Services[userServicePosition - 1])
 
     coin1 = DivergenceDB[userID].Services[userServicePosition - 1][0]
     coin2 = DivergenceDB[userID].Services[userServicePosition - 1][1]
-    user_signal = DivergenceDB[userID].Services[userServicePosition - 1][2]
+    user_signal = float(DivergenceDB[userID].Services[userServicePosition - 1][2])
 
-    print(coin1)
-    print(coin2)
-    print(user_signal)
-    #print(DivergenceDB[userID].Services)
-    #print(DivergenceDB[userID].Services)
-    ##check_Divergence(coin1, coin2, user_signal, first_name, telephone)
+    #print(coin1)
+    #print(coin2)
+    #print(user_signal)
 
     for user in userDB:
         print(userDB[user])
         if userDB[user].serviceID == userID:
-            print(user)
+            #print(user)
             user_name = user
-            print("username is: "+str(user))
+            #print("username is: "+str(user))
 
             first_name = userDB[user_name].first_name
             telephone = userDB[user_name].telephone
 
-            print(first_name)
-            print(telephone)
-    #print(userDB['hytird'])#.first_name)
-    #print(userDB[userID].telephone)
+            #print(first_name)
+            #print(telephone)
+    
+    #print(coin_dict[coin1])
+    #print(coin_dict[coin2])
+    ex_rate = float(coin_dict[coin1])/float(coin_dict[coin2])
 
     i+=1
 
