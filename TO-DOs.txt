@@ -1,8 +1,10 @@
 
-- Fix while loop
-
 - Block recurring notifications to same user for same issue
+	In a shelve db, "timeDB", save [userID, timestamp, service position].
+	add an if in the main to check against that before calling cryptocheck to save time.
 
 - Host on AWS
 
 - Fix UX, user guidance
+
+- Update design document, write program operation outline, make presentation
