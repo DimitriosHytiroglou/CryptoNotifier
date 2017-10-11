@@ -4,12 +4,12 @@ from TwilioCall import send_er_notification, send_pivot_notification
 
 
 
-def check_Divergence(coin1, coin2, ex_rate, user_signal, first_name, telephone):
+def check_Divergence(coin1, coin2, user_signal, ex_rate, first_name, telephone):
 
 
 		if ex_rate >= float(user_signal):
 			print("Success")
-			send_er_notification(coin1, coin2, user_signal, first_name, telephone)
+			send_er_notification(coin1, coin2, user_signal, ex_rate, first_name, telephone)
 		else:
 			pass
 

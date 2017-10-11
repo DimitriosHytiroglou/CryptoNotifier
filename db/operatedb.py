@@ -114,14 +114,30 @@ def addService():
     user_name = input("Give username: ")
 
     print("\nAdd a service by typing the corresponding number:\n")  # Display menu text and instructions
-    print("""1. Divergence Notifications: Watch two currencies and receive notifications when they diverge by a specified amount.\n2. Spike Notifications: Get notified when a currency is above/below a specified point.""")
+    print("""1. Divergence Notifications: Watch two currencies and receive notifications when they diverge by a specified amount, as illustrated by their exchange rate.\n2. Spike Notifications: Get notified when a currency is above/below a specified point.""")
     user_in = input("\n> ")
 
     if user_in == "1":
-        print("You've selected the Spike Notifications service.")
-        currency1 = input("Enter your first currency to watch: ")
-        currency2 = input("Enter your second currency to watch: ")
-        divergence = input("What is the divergence in prices you'd like to be notified about? : ")
+        print("You've selected the Divergence Notifications service.")
+        currency1 = input("Enter the first currency: ")
+        currency2 = input("Enter the second currency: ")
+
+        question1 = "Do you want to know: \n1. 1 %s = x %s? or \n2. 1 %s = x %s?"   % (currency1 , currency2, currency2, currency1)
+        print(question1)
+
+        option = input("Choose option 1 or 2: ")
+
+        if option == "1":
+            pass
+        else:
+            tmp_currency = currency1
+            currency1 = currency2
+            currency2 = tmp_currency
+
+        divergence = input("What is the exchange rate between the currencies for which you'd like to be notified? : ")
+
+        announcement = "You will be notified when the exchange rate between %s and %s crosses %s" % (currency1, currency2, str(divergence))
+        print(announcement)
 
         db = shelve.open('../db/persondb')
 

@@ -24,15 +24,15 @@ client = Client(account_sid, auth_token)
 
 
 # Send exchange rate notification function
-def send_er_notification(coin1, coin2, user_signal, first_name, telephone):
+def send_er_notification(coin1, coin2, user_signal, ex_rate, first_name, telephone):
 	message = client.messages.create(
 	    to = telephone,		  #user number
 	    from_ = "+17797747983",   # Account Twilio Number
-	    body = ("Hey, " + first_name +": the exchange rate between " +
-	    		str(coin1) + " and " + str(coin2) +
-	    		" just crossed " + str(user_signal)
-	    		+ "! " + "TO HODL OR NOT TO HODL???" +
-				"Get more info at"))
+	    body = ("Hey " + first_name + ", the exchange rate you specified has been crossed! " +
+				"Current exchange rate: 1 " +
+	    		str(coin1) + " = " + str(format(ex_rate, '.2f')) + " " + str(coin2) +
+	    		"! " + "TO HODL OR NOT TO HODL???" +
+				" Get more info at https://coinmarketcap.com/"))
 
 	print("Sent: ",message.sid)
 
@@ -45,19 +45,21 @@ def send_pivot_notification(coin1, user_signal, price, direction, first_name, te
 		message = client.messages.create(
 			to=telephone,
 			from_="+17797747983",  # Account Twilio Number
-			body=("Hey, " + first_name + ": the price of " +
+			body=("Hey " + first_name + ", the price of " +
 				  str(coin1) + " just went below $" +
-			      str(user_signal) + "! "
-			  	  + "TO HODL OR NOT TO HODL???"))
+			      str(format(user_signal, '.2f')) + " and is now at " + str(format(price, '.2f')) + "! "
+			  	  + "TO HODL OR NOT TO HODL???" +
+				  " Get more info at https://coinmarketcap.com/"))
 
 	elif direction == "A":
 
 		message = client.messages.create(
 	    	to = telephone,
 	    	from_ = "+17797747983",   # Account Twilio Number
-	    	body = ("Hey, " + first_name + ": the price of " +
+	    	body = ("Hey " + first_name + ", the price of " +
 	    			str(coin1) + " just went above $" +
-	    			str(user_signal) + "! "
-	    			+ "TO HODL OR NOT TO HODL???"))
+	    			str(format(user_signal, '.2f')) + " and is now at " + str(format(price, '.2f')) + "! "
+	    			+ "TO HODL OR NOT TO HODL???"+
+					" Get more info at https://coinmarketcap.com/"))
 
 	print("Sent: ",message.sid)
