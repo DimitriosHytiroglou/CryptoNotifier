@@ -161,7 +161,7 @@ def addService():
 
         if ID in SpikeDB:
             tmp = SpikeDB[ID]
-            tmp.Services.append([currency1, currency2, divergence])
+            tmp.Services.append([currency1, currency2, divergence, relativity])
             SpikeDB[ID] = tmp
         else:
             SpikeDB[ID] = MemberSpikeServices(currency1, currency2, divergence, relativity)  # Create a key in the database with the user's serviceID and a value of his specs

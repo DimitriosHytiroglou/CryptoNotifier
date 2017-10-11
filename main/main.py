@@ -90,8 +90,9 @@ while i <= len(SpikeDB['SpikeServiceList'].members)-1:                          
     print(user_signal)
 
     for user in userDB:                                                                 # Retrieve user_name corresponding to the ID of this service instance
-        print(userDB[user])
+
         if userDB[user].serviceID == userID:
+            print(userDB[user])
             #print(user)
             user_name = user
             #print("username is: "+str(user))
