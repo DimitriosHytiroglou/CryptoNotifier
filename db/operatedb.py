@@ -146,11 +146,12 @@ def addService():
 
 
     elif user_in == "2":
-        print("Spike Notification Service selected.\nPlease provide your service requirements below:")
-        currency1 = input("Enter your first currency to watch: ")           #These should read: Choose the currency you want to watch
-        currency2 = input("Enter your second currency to watch: ")          #Choose in what currency terms you will give the price to watch
-        divergence = input("What is the price you'd like to be notified about? ")       # Maybe swap this with the one above to make it clearer
-        relativity = input("Input whether you care about that price and higher or lower.(H/L)")
+        print("Spike Notification Service selected.\nPlease provide your service requirements below: ")
+        currency1 = input("Enter the currency to watch by its 3-letter ticker (e.g. BTC for Bitcoin): ")           # These should read: Choose the currency you want to watch
+                                                                     # In future implementations the base currency (currency2) could be made selectable by the user.
+        currency2 = "USD"                                            # Choose in what currency terms you will give the price to watch
+        divergence = input("At what price point (in USD) would you like to be notified? ")       # Maybe swap this with the one above to make it clearer
+        relativity = input("Do you want to know when the coin goes ABOVE or BELOW that price?(A/B) ")
 
         db = shelve.open('../db/persondb')
 
@@ -166,7 +167,7 @@ def addService():
             SpikeDB[ID] = MemberSpikeServices(currency1, currency2, divergence, relativity)  # Create a key in the database with the user's serviceID and a value of his specs
 
         position = len(SpikeDB[ID].Services)
-        List_tmp = SpikeDB['SpikeServiceList']  # Enter the added services to the list of active Diergence services
+        List_tmp = SpikeDB['SpikeServiceList']  # Enter the added services to the list of active Divergence services
         List_tmp.members.append([ID, position])  # ...
         SpikeDB['SpikeServiceList'] = List_tmp  # ...
 

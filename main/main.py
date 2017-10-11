@@ -72,6 +72,7 @@ i = 1
 while i <= len(SpikeDB['SpikeServiceList'].members)-1:                                  # Go through the list of divergence service instances to perform notification checks
 
     userID =  SpikeDB['SpikeServiceList'].members[i][0]                                 # Retrieve the userID for each listed service instance
+    print(userID)
     userServicePosition = SpikeDB['SpikeServiceList'].members[i][1]                     # Retrieve the position of the service instance in the list
 
     # print(userID)
@@ -79,12 +80,14 @@ while i <= len(SpikeDB['SpikeServiceList'].members)-1:                          
     #print(DivergenceDB[userID].Services[userServicePosition - 1])
 
     coin1 = SpikeDB[userID].Services[userServicePosition - 1][0]                        # Retrieve coin1 for the service instance
-    coin2 = SpikeDB[userID].Services[userServicePosition - 1][1]                        # Retrieve coin2 for the service instance
+    #coin2 = SpikeDB[userID].Services[userServicePosition - 1][1]                        # Retrieve coin2 for the service instance
     user_signal = float(SpikeDB[userID].Services[userServicePosition - 1][2])           # Retrieve user_signal for the service instance
+    direction = SpikeDB[userID].Services[userServicePosition - 1][3]  # Retrieve user_signal for the service instance
 
+    print(direction)
     #print(coin1)
     #print(coin2)
-    #print(user_signal)
+    print(user_signal)
 
     for user in userDB:                                                                 # Retrieve user_name corresponding to the ID of this service instance
         print(userDB[user])
@@ -97,17 +100,21 @@ while i <= len(SpikeDB['SpikeServiceList'].members)-1:                          
             telephone = userDB[user_name].telephone
 
             #print(first_name)
-            #print(telephone)
+            print(telephone)
 
     #print(coin_dict[coin1])
     #print(coin_dict[coin2])
-    ex_rate = float(coin_dict[coin1])/float(coin_dict[coin2])                           # Calculate the necessary exchange rate to perform check for this service instance
+    price = float(1/coin_dict[coin1])                           # Calculate the necessary exchange rate to perform check for this service instance
+    print(price)
 
     i+=1
 
-    check_Spike(coin1, coin2, user_signal, ex_rate, first_name, telephone)              # Pass all the variable retrieved above to call the check function to determine if notification is necessary
+    check_Spike(coin1, user_signal, price, direction, first_name, telephone)              # Pass all the variable retrieved above to call the check function to determine if notification is necessary
 
 SpikeDB.close()
+
+
+userDB.close()                                                                          #Close userDB at the end of the whole check cycle
 
 ####
 #### Add username - userID join table, saved in another shelve DB to avoid the for loop
