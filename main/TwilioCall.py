@@ -47,7 +47,7 @@ def send_pivot_notification(coin1, user_signal, price, direction, first_name, te
 			from_="+17797747983",  # Account Twilio Number
 			body=("Hey " + first_name + ", the price of " +
 				  str(coin1) + " just went below $" +
-			      str(format(user_signal, '.2f')) + " and is now at " + str(format(price, '.2f')) + "! "
+			      str(format(user_signal, '.2f')) + " and is now at $" + str(format(price, '.2f')) + "! "
 			  	  + "TO HODL OR NOT TO HODL???" +
 				  " Get more info at https://coinmarketcap.com/"))
 
@@ -58,7 +58,7 @@ def send_pivot_notification(coin1, user_signal, price, direction, first_name, te
 	    	from_ = "+17797747983",   # Account Twilio Number
 	    	body = ("Hey " + first_name + ", the price of " +
 	    			str(coin1) + " just went above $" +
-	    			str(format(user_signal, '.2f')) + " and is now at " + str(format(price, '.2f')) + "! "
+	    			str(format(user_signal, '.2f')) + " and is now at $" + str(format(price, '.2f')) + "! "
 	    			+ "TO HODL OR NOT TO HODL???"+
 					" Get more info at https://coinmarketcap.com/"))
 

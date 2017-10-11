@@ -119,8 +119,8 @@ def addService():
 
     if user_in == "1":
         print("You've selected the Divergence Notifications service.")
-        currency1 = input("Enter the first currency: ")
-        currency2 = input("Enter the second currency: ")
+        currency1 = input("Enter the first currency by its 3-letter ticker (e.g. BTC for Bitcoin): ")
+        currency2 = input("Enter the second currency by its 3-letter ticker (e.g. ETH for Ether): ")
 
         question1 = "Do you want to know: \n1. 1 %s = x %s? or \n2. 1 %s = x %s?"   % (currency1 , currency2, currency2, currency1)
         print(question1)
