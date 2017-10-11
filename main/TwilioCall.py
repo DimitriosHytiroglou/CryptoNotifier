@@ -2,14 +2,14 @@ import sys
 sys.path.insert(0, '../db')
 from twilio.rest import Client
 
-# ExchangeRate coin data
-coin_pair = ["BTC", "ETH"]
-exchange_rate = 1.3
+# ExchangeRate coin data        ##TO BE REMOVED
+coin_pair = ["BTC", "ETH"]      ##TO BE REMOVED
+exchange_rate = 1.3             ##TO BE REMOVED
 
-# Pivot coin data
-coin = ["BTC"]
-price = 3942
-pivot_point = 4000
+# Pivot coin data               ##TO BE REMOVED
+coin = ["BTC"]                  ##TO BE REMOVED
+price = 3942                    ##TO BE REMOVED
+pivot_point = 4000              ##TO BE REMOVED
 
 # User data                                 ##TO BE REMOVED
 surya_number = "+18184147092"               ##TO BE REMOVED
