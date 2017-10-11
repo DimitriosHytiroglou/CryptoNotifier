@@ -71,6 +71,7 @@ SpikeDB = shelve.open('../db/personSpikeDB')                                    
 i = 1
 while i <= len(SpikeDB['SpikeServiceList'].members)-1:                                  # Go through the list of divergence service instances to perform notification checks
 
+    print("")
     userID =  SpikeDB['SpikeServiceList'].members[i][0]                                 # Retrieve the userID for each listed service instance
     print(userID)
     userServicePosition = SpikeDB['SpikeServiceList'].members[i][1]                     # Retrieve the position of the service instance in the list
