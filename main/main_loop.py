@@ -2,6 +2,8 @@
 # Then checks the exchange rates array
 # And finally if needed calls twilio to send text
 import sys
+import threading
+import datetime
 sys.path.insert(0, '../db')
 import shelve
 from CryptoCheck import check_Divergence, check_Spike
