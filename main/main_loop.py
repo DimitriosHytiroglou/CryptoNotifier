@@ -5,7 +5,7 @@ import sys
 sys.path.insert(0, '../db')
 import shelve
 from CryptoCheck import check_Divergence, check_Spike
-    import requests as rqst
+import requests as rqst
     
 def main():
     def Cryptolog():
