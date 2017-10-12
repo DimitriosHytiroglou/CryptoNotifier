@@ -194,13 +194,36 @@ def addService():
     else:
         print("Sorry! We didn't recognize your input.")
 
+#def deleteUser():
+#    key = input("Enter the username you want to delete: ")
+#    sure = input("Are you sure you want to delete this user? (Y/N)")
+#    if sure.lower() == "y":
+#        db = shelve.open('../db/persondb')
+#        del db[key]
+#        db.close()
+#        print("User deleted.")
+#    else:
+#        return
+####
 def deleteUser():
     key = input("Enter the username you want to delete: ")
     sure = input("Are you sure you want to delete this user? (Y/N)")
     if sure.lower() == "y":
         db = shelve.open('../db/persondb')
+        userID = db[key].serviceID
         del db[key]
         db.close()
         print("User deleted.")
+
+        dbDivergence = shelve.open('../db/personDivergenceDB')
+        if userID in dbDivergence:
+            del dbDivergence[userID]
+        dbDivergence.close()
+
+        dbSpike = shelve.open('../db/personSpikeDB')
+        if userID in dbSpike:
+            del dbSpike[userID]
+        dbSpike.close()
+
     else:
         return
