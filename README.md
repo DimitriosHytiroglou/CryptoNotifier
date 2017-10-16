@@ -2,7 +2,7 @@
 
 This is a price-movement notification tool for cryptocurrency holders, created by graduate students at the Berkeley School of Information.
 
-## What's "Hodl""?
+## What's "Hodl"?
 https://www.reddit.com/r/Bitcoin/comments/2b8t78/whats_hodl/
 
 ## How to Run
