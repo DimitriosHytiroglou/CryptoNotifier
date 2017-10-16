@@ -2,6 +2,9 @@
 
 This is a price-movement notification tool for cryptocurrency holders, created by graduate students at the Berkeley School of Information.
 
+## What's "Hodl""?
+https://www.reddit.com/r/Bitcoin/comments/2b8t78/whats_hodl/
+
 ## How to Run
 
 1. Clone the repo.
@@ -12,7 +15,7 @@ This is a price-movement notification tool for cryptocurrency holders, created b
 
 1. Select "Create new user" from the menu by entering "1".
 2. Enter a username and phone number to receive notifications.
-3. OptionaL: enter a real name (first and last) for more personalized messages.
+3. Optional: enter a real name (first and last) for more personalized messages.
 
 ### Spike Service
 
