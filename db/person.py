@@ -1,10 +1,10 @@
 
 class User():
-    def __init__(self, first_name, last_name, telephone, user_name):  # Constructor takes three arguments
-        self.first_name = first_name  # Fill out fields when created
-        self.last_name = last_name  # self is the new instance object
-        self.telephone = telephone
-        self.user_name = user_name
+    def __init__(self, first_name, last_name, telephone, user_name):        # Constructor takes three arguments
+        self.first_name = first_name                                        # Fill out fields when created
+        self.last_name = last_name                                          # self is the new instance object
+        self.telephone = telephone                                          # ...
+        self.user_name = user_name                                          # ...
 
         import random
         self.serviceID = str(random.getrandbits(128))
@@ -33,13 +33,12 @@ class Service():
         for person in self.members:
             print(person)
 
-class DivergenceService(Service):    ###This is the exchange divergence functionality
+class DivergenceService(Service):                       # This is the exchange divergence functionality
     def __init__(self, *args):
         Service.__init__(self, *args)
         self.members = list(args)
 
-
-class SpikeService(Service):         ###This is the price spike functionality
+class SpikeService(Service):                            # This is the price spike functionality
     def __init__(self, *args):
         Service.__init__(self, *args)
         self.members = list(args)
@@ -47,10 +46,9 @@ class SpikeService(Service):         ###This is the price spike functionality
 
 ### ServiceMember classes ###
 
-
 class MemberServices():
     def __init__(self, currency1, currency2, price):
-        self.Services = []          ###Initiates the list of Services for the user
+        self.Services = []                             # Initiates the list of Services for the user
         self.Services.append([currency1, currency2, price])
 
     def addService(self, currency1, currency2, price):
@@ -79,12 +77,3 @@ def initializeServices():                                       #Initializes an 
 
 if __name__ == '__main__':
     pass
-
-#    for obj in (bob, sue, tom):  # Process objects generically
-#        obj.giveRaise(.10)  # Run this object's giveRaise
-#        print(obj)  # Run the common __repr__
-#
-#    development = Department(bob, sue)  # Embed objects in a composite
-#    development.addMember(tom)
-#    development.giveRaises(.10)  # Runs embedded objects' giveRaise
-#    development.showAll()  # Runs embedded objects' __repr__

@@ -1,54 +1,52 @@
-from person import User                         # Load our classes
+from person import User                     # Load our classes
 from person import DivergenceService, SpikeService, MemberDivergenceServices, MemberSpikeServices
 
-import shelve                                   #import shelve database module
+import shelve                               #import shelve database module
 
 def checkPassword():
     pass
-    #import getpass
-    #check = False
-    #while not check:
-    #pass = getpass.getpass()
-    #if pass == username.password:
-    #    x = True
-    #else:
-    #    print("Wrong password!"
-
+    #import getpass                         ### To be implemented in the future
+    #check = False                          ### ...
+    #while not check:                       ### ...
+    #pass = getpass.getpass()               ### ...
+    #if pass == username.password:          ### ...
+    #    x = True                           ### ...
+    #else:                                  ### ...
+    #    print("Wrong password!"            ### ...
 
 def retrieveUser():
     key = input("Please provide your username: ")
-    db = shelve.open('../db/persondb')                  # Open shelve database
-    if key not in db:                                   # Check if username in database
+    db = shelve.open('../db/persondb')                                                 # Open user database
+    if key not in db:                                                                  # Check if username in database
         print("Uh oh! Username not found. Please try again or create new username.")   #...
     else:
-        #for key in sorted(db):                         # IGNORE THIS LINE
-        print(key, '\t=>', db[key])                     # Print user details for that username
+        print(key, '\t=>', db[key])                                 # Print user details for that username
 
         user_serviceID = db[key].serviceID
-        db.close()                                          # Close after making changes
+        db.close()                                                  # Close after making changes
 
-        print("\nServices include: ")              # Call the retrieveUserServices function to print the services of this user
+        print("\nServices include: ")                               # Call the retrieveUserServices function to print the services of this user
         retrieveUserServices(user_serviceID)
 
 
 def retrieveUserServices(user_serviceID):
     DivergenceDB = shelve.open('../db/personDivergenceDB')          # Open the Divergence Services database
 
-    if user_serviceID in DivergenceDB:                              #Check if there is an entry for this user in the database
+    if user_serviceID in DivergenceDB:                              # Check if there is an entry for this user in the database
         print("\nDivergence services: ")
-        for services in DivergenceDB[user_serviceID].Services:      #Iterate through the Services of the user and print them
+        for services in DivergenceDB[user_serviceID].Services:      # Iterate through the Services of the user and print them
             print(services)
 
     DivergenceDB.close()
 
     SpikeDB = shelve.open('../db/personSpikeDB')                    # Open the Divergence Services database
 
-    if user_serviceID in SpikeDB:                                   #Check if there is an entry for this user in the database
+    if user_serviceID in SpikeDB:                                   # Check if there is an entry for this user in the database
         print("\nSpike services: ")
-        for services in SpikeDB[user_serviceID].Services:           #Iterate through the Services of the user and print them
+        for services in SpikeDB[user_serviceID].Services:           # Iterate through the Services of the user and print them
             print(services)
 
-    SpikeDB.close()
+    SpikeDB.close()                                                 # Close Spike Service DB
 
 
 def addUser():
@@ -57,22 +55,22 @@ def addUser():
     telephone = input("Enter telephone: ")                          #...
     user_name = input("Enter username: ")                           #...
 
-    new_user = User(first_name, last_name, telephone, user_name)   #Create instance of class User with new data
+    new_user = User(first_name, last_name, telephone, user_name)    # Create instance of class User with new data
 
-    db = shelve.open('../db/persondb')                             # Open shelve database
-    db[new_user.user_name] = new_user                              # Store new user object on shelve by key = username
-    db.close()                                                     # Close shelve database after making changes
+    db = shelve.open('../db/persondb')                              # Open shelve database
+    db[new_user.user_name] = new_user                               # Store new user object on shelve by key = username
+    db.close()                                                      # Close shelve database after making changes
 
 
 def updateUser():
     key = input("Enter your username: ")
-    db = shelve.open('../db/persondb')  # Open shelve database
+    db = shelve.open('../db/persondb')                              # Open user database
 
-    if key not in db:  # Check if username in database
+    if key not in db:                                               # Check if username in database
         print("Uh oh! Username not found. Please try again or create new username.")  # ...
 
     else:
-        print(key, '\t=>', db[key])  # Print user details for that username
+        print(key, '\t=>', db[key])                                 # Print user details for that username
 
     while True:
         print("\nSelect a the field you would like to update by typing the corresponding number:\n")       #Display menu text and instructions
@@ -83,31 +81,19 @@ def updateUser():
             new_key = input("Please provide the new username: ")
             sure = input("Are you sure you want to update this username? (Y/N)")
             if sure.lower() == "y":
-                db[new_key] = db[key]  # Store new user object on shelve by key = username
-                del db[key]
+                db[new_key] = db[key]                               # Store new username object on shelve by key = username
+                del db[key]                                         # Delete old username entry
                 print("Username updated.")
-        elif user_in == "2":
-            pass
-        elif user_in == "3":
-            pass
-        elif user_in == "4":
-            pass
-        else:
-            break
+        elif user_in == "2":                                        ### Implementation of future code to update rest of attributes
+            pass                                                    ### ...
+        elif user_in == "3":                                        ### ...
+            pass                                                    ### ...
+        elif user_in == "4":                                        ### ...
+            pass                                                    ### ...
+        else:                                                       ### ...
+            break                                                   ### ...
 
     db.close()
-#
-# Choose between names, username, phone, and also add services
-#    db = shelve.open('../db/persondb')              # Reopen shelve with same filename
-#
-#    for key in sorted(db):                          # Iterate to display database objects
-#        print(key, '\t=>', db[key])                 # Prints with custom format
-#
-#    #sue = db['Sue']                                # Index by key to fetch
-#    #sue.updateFirstName("Josey")                   # Update in memory using class's method
-#    #db['Sue'] = sue                                # Assign to key to update in shelve
-#    #print(db['Sue'])
-#    db.close()                                      # Close after making changes
 
 
 def addService():
@@ -183,9 +169,9 @@ def addService():
             SpikeDB[ID] = MemberSpikeServices(currency1, currency2, divergence, relativity)  # Create a key in the database with the user's serviceID and a value of his specs
 
         position = len(SpikeDB[ID].Services)
-        List_tmp = SpikeDB['SpikeServiceList']  # Enter the added services to the list of active Divergence services
-        List_tmp.members.append([ID, position])  # ...
-        SpikeDB['SpikeServiceList'] = List_tmp  # ...
+        List_tmp = SpikeDB['SpikeServiceList']                              # Enter the added services to the list of active Divergence services
+        List_tmp.members.append([ID, position])                             # ...
+        SpikeDB['SpikeServiceList'] = List_tmp                              # ...
 
         SpikeDB.close()
         db.close()
