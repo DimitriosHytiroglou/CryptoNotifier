@@ -1,4 +1,5 @@
 # To Hodl or Not To Hodl?
+### Dimitrios Hytiroglou, Surya Sendyl, Joyce Lee
 
 This is a price-movement notification tool for cryptocurrency holders, created by graduate students at the Berkeley School of Information.
 
