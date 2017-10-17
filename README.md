@@ -20,7 +20,7 @@ Make sure you have python3.x installed on the machine and also the following pac
 - threading
 
 The very first time you use the program make sure to delete all the *.bak, *.dat, *.dir files in the /db directory.
-Then run initializedb.py. This initializes the databases and is needed only the first time the programm is run, or whe n the database is wiped.
+Then run initializedb.py. This initializes the databases and is needed only the first time the program is run, or when the database is wiped.
 
 ### 2. User interface
 In the /main directory run User_Interface.py
