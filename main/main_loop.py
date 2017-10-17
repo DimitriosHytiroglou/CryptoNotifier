@@ -8,13 +8,14 @@ import requests as rqst
     
 def main():
     def Cryptolog():
-        request_string = rqst.get('https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=USD,BTC,BCH,ETH,LTC,LSK,NEO,XRP')
-        coin_dict = request_string.json()
-        return coin_dict
+    	allCoins = 'BTC,ETH,XRP,BCH,LTC,DASH,XEM,NEO,XMR,MIOTA,ETC,LSK,ZEC,WAVES,STRAT,XLM,ARK,STEEM,EOS,GN'        # String containing the top 20 coins
+    	request_string = rqst.get('https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms='+allCoins)          # Request to the CryptoCompare API to obtain the exchange rates of the top 20 coins
+    	coin_dict = request_string.json()                                                                           # Save the return of the Cryptocompare API request in a variable as a dictionary
+    	return coin_dict
     
-    coin_dict = Cryptolog()
+    coin_dict = Cryptolog()																	# Pass the dictionary to a variable outside the function
 
-    userDB = shelve.open('../db/persondb')
+    userDB = shelve.open('../db/persondb')													# Open the user database
     
     #Go through the Divergence subscribes
     DivergenceDB = shelve.open('../db/personDivergenceDB')                                  # Open database for divergence service
@@ -36,8 +37,8 @@ def main():
                 user_name = user
                 print("username is: "+str(user))
     
-                first_name = userDB[user_name].first_name
-                telephone = userDB[user_name].telephone
+                first_name = userDB[user_name].first_name									# Retrieve first name corresponding to the ID of this instance
+                telephone = userDB[user_name].telephone										# Retrieve telephone corresponding to the ID of this instance
 
         ex_rate = float(coin_dict[coin2])/float(coin_dict[coin1])                           # Calculate the exchange rate of interest fo this service instance
     
@@ -95,8 +96,8 @@ def Repeater():
 
 Repeater()
 
-####
-#### Add username - userID join table, saved in another shelve DB to avoid the for loop
-####
+###
+### Add username - userID join table, saved in another shelve DB to avoid the for loop
+###
 
 ### Add code to ensure that initializeDB runs on first time

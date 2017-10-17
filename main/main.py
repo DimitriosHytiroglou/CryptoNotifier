@@ -36,8 +36,8 @@ while i <= len(DivergenceDB['DivergenceServiceList'].members)-1:                
             user_name = user
             print("username is: "+str(user))
 
-            first_name = userDB[user_name].first_name
-            telephone = userDB[user_name].telephone
+            first_name = userDB[user_name].first_name                                   # Retrieve first name corresponding to the ID of this instance
+            telephone = userDB[user_name].telephone                                     # Retrieve telephone corresponding to the ID of this instance
 
     ex_rate = float(coin_dict[coin2])/float(coin_dict[coin1])                           # Calculate the exchange rate of interest fo this service instance
 
@@ -89,8 +89,8 @@ SpikeDB.close()
 
 userDB.close()                                                                          #Close userDB at the end of the whole check cycle
 
-####
-#### Add username - userID join table, saved in another shelve DB to avoid the for loop
-####
+###
+### Add username - userID join table, saved in another shelve DB to avoid the for loop
+###
 
 ### Add code to ensure that initializeDB runs on first time

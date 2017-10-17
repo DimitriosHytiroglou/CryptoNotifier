@@ -116,9 +116,9 @@ def addService():
         if option == "1":
             pass
         else:
-            tmp_currency = currency1
-            currency1 = currency2
-            currency2 = tmp_currency
+            tmp_currency = currency1                        # Swap position of currencies based on the users choice
+            currency1 = currency2                           #This is done because it determines the calculation of the exchange rate 
+            currency2 = tmp_currency                        #and users may have initially put the coins the wrong way around 
 
         divergence = input("What is the exchange rate between the currencies for which you'd like to be notified? : ")
 
@@ -136,12 +136,12 @@ def addService():
             tmp.Services.append([currency1, currency2, divergence])
             DivergenceDB[ID] = tmp
         else:
-            DivergenceDB[ID] = MemberDivergenceServices(currency1, currency2, divergence)  # Create a key in the database with the user's serviceID and a value of his specs
+            DivergenceDB[ID] = MemberDivergenceServices(currency1, currency2, divergence)   # Create a key in the database with the user's serviceID and a value of his specs
 
         position = len(DivergenceDB[ID].Services)
-        List_tmp = DivergenceDB['DivergenceServiceList']        #Enter the added services to the list of active Diergence services
-        List_tmp.members.append([ID,position])                  #...
-        DivergenceDB['DivergenceServiceList'] = List_tmp        #...
+        List_tmp = DivergenceDB['DivergenceServiceList']                                    #Enter the added services to the list of active Diergence services
+        List_tmp.members.append([ID,position])                                              #...
+        DivergenceDB['DivergenceServiceList'] = List_tmp                                    #...
 
         DivergenceDB.close()
         db.close()
@@ -149,10 +149,10 @@ def addService():
 
     elif user_in == "2":
         print("Spike Notification Service selected.\nPlease provide your service requirements below: ")
-        currency1 = input("Enter the currency to watch by its 3-letter ticker (e.g. BTC for Bitcoin): ")           # These should read: Choose the currency you want to watch
-                                                                     # In future implementations the base currency (currency2) could be made selectable by the user.
-        currency2 = "USD"                                            # Choose in what currency terms you will give the price to watch
-        divergence = input("At what price point (in USD) would you like to be notified? ")       # Maybe swap this with the one above to make it clearer
+        currency1 = input("Enter the currency to watch by its 3-letter ticker (e.g. BTC for Bitcoin): ")            # These should read: Choose the currency you want to watch
+                                                                                                                    # In future implementations the base currency (currency2) could be made selectable by the user.
+        currency2 = "USD"                                                                                           # Choose in what currency terms you will give the price to watch
+        divergence = input("At what price point (in USD) would you like to be notified? ")                          
         relativity = input("Do you want to know when the coin goes ABOVE or BELOW that price?(A/B) ")
 
         db = shelve.open('../db/persondb')
@@ -180,32 +180,25 @@ def addService():
     else:
         print("Sorry! We didn't recognize your input.")
 
-#def deleteUser():
-#    key = input("Enter the username you want to delete: ")
-#    sure = input("Are you sure you want to delete this user? (Y/N)")
-#    if sure.lower() == "y":
-#        db = shelve.open('../db/persondb')
-#        del db[key]
-#        db.close()
-#        print("User deleted.")
-#    else:
-#        return
-####
+# Definition of function to delete users 
 def deleteUser():
     key = input("Enter the username you want to delete: ")
     sure = input("Are you sure you want to delete this user? (Y/N)")
     if sure.lower() == "y":
+        # Delete user from Person database
         db = shelve.open('../db/persondb')
         userID = db[key].serviceID
         del db[key]
         db.close()
         print("User deleted.")
 
-        dbDivergence = shelve.open('../db/personDivergenceDB')
+        # Delete user from Divergence service database
+        dbDivergence = shelve.open('../db/personDivergenceDB')              
         if userID in dbDivergence:
             del dbDivergence[userID]
         dbDivergence.close()
 
+        # Delete user from Spike service database
         dbSpike = shelve.open('../db/personSpikeDB')
         if userID in dbSpike:
             del dbSpike[userID]

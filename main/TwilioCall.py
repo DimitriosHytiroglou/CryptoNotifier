@@ -25,7 +25,7 @@ def send_er_notification(coin1, coin2, user_signal, ex_rate, first_name, telepho
 # Send pivot notification function
 def send_pivot_notification(coin1, user_signal, price, direction, first_name, telephone):
 
-	if direction == "B":
+	if direction == "B":											  # Check if the price check is upwards or downwards to tailor the message accordingly
 
 		message = client.messages.create(
 			to=telephone,
