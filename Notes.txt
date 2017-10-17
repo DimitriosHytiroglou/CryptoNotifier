@@ -15,4 +15,4 @@ Spike
 
 - Delete user ID when deleting user name. Check what happens when updating.
 
-
+- Add password functionality
