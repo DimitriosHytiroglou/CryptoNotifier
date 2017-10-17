@@ -1,0 +1,18 @@
+## Test Cases ##
+
+Divergence
+- BTC ETH 15
+- ETH BTC 0.05
+
+Spike
+- BTC USD 3000 A
+
+## FUTURE STEPS ##
+
+- Block recurring notifications to same user for same issue
+
+- Input proper telephone check
+
+- Delete user ID when deleting user name. Check what happens when updating.
+
+
